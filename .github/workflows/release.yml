@@ -43,7 +43,7 @@ jobs:
           $notes += "`n`n---`n**Downloads:** the ``setup.exe`` installs Savepoint for your user (recommended); the ``portable.zip`` runs without installing. Windows 10 or 11, 64-bit. Check a download with ``Get-FileHash <file>`` against ``SHA256SUMS.txt``."
           Set-Content -Path release-notes.md -Value $notes -Encoding utf8
 
-      - uses: softprops/action-gh-release@v2
+      - uses: softprops/action-gh-release@v3
         with:
           name: Savepoint ${{ env.VERSION }}
           body_path: release-notes.md
