@@ -53,7 +53,8 @@ try {
     $sums = $artifacts | ForEach-Object {
         "{0}  {1}" -f (Get-FileHash $_ -Algorithm SHA256).Hash.ToLower(), (Split-Path $_ -Leaf)
     }
-    [IO.File]::WriteAllLines((Join-Path $dist "SHA256SUMS.txt"), [string[]]$sums)
+    # LF line endings, so `sha256sum -c SHA256SUMS.txt` also works on Linux and macOS.
+    [IO.File]::WriteAllText((Join-Path $dist "SHA256SUMS.txt"), (($sums -join "`n") + "`n"))
 
     Get-ChildItem $dist -File | Select-Object Name, @{ n = "KB"; e = { [math]::Round($_.Length / 1KB) } } | Format-Table | Out-String | Write-Host
 } finally {
