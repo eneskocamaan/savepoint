@@ -1,0 +1,59 @@
+name: Bug report
+description: Something doesn't work as it should.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report this! Security problems should not go here: see SECURITY.md.
+  - type: input
+    id: version
+    attributes:
+      label: Savepoint version
+      description: Shown at the bottom of Settings.
+      placeholder: "0.1.0"
+    validations:
+      required: true
+  - type: dropdown
+    id: install
+    attributes:
+      label: How did you install it?
+      options:
+        - Installer (setup.exe)
+        - Portable zip
+        - Built from source
+    validations:
+      required: true
+  - type: input
+    id: windows
+    attributes:
+      label: Windows version
+      description: "Settings → System → About, for example \"Windows 11 24H2\"."
+    validations:
+      required: true
+  - type: input
+    id: game
+    attributes:
+      label: Game and store
+      description: If the problem is about one game, which one, and where it came from (Steam, Epic, GOG, Xbox app, other).
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What you did, what you expected, and what happened instead.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. ...
+        2. ...
+  - type: textarea
+    id: log
+    attributes:
+      label: Log
+      description: |
+        The last lines of `%LOCALAPPDATA%\Savepoint\savepoint.log`. It contains game names and folder paths on your PC; remove anything you don't want to share.
+      render: text
