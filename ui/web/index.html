@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Savepoint</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="bar">
+    <button class="brand" data-nav="list">
+      <svg class="mark" viewBox="0 0 64 64" aria-hidden="true">
+        <path d="M32 4 L10 32 L32 60 Z" fill="#159a8a"/>
+        <path d="M32 4 L54 32 L32 60 Z" fill="#2dd4bf"/>
+      </svg>
+      <span>Savepoint</span>
+    </button>
+    <nav class="actions">
+      <button id="add-game" class="btn" data-i18n="header.add_game"></button>
+      <button class="btn icon" data-nav="settings" data-i18n-title="header.settings" data-i18n-aria="header.settings">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      </button>
+      <button id="close-app" class="btn icon quiet" data-i18n-title="header.close" data-i18n-aria="header.close">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 5l10 10M15 5L5 15"/></svg>
+      </button>
+    </nav>
+  </header>
+
+  <div id="alert" class="alert" role="alert" hidden>
+    <svg class="alert-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17h.01"/></svg>
+    <button id="alert-open" class="alert-text"></button>
+    <button id="alert-close" class="alert-close" data-i18n-aria="alert.dismiss" data-i18n-title="alert.dismiss">
+      <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 5l10 10M15 5L5 15"/></svg>
+    </button>
+  </div>
+
+  <main id="view"></main>
+
+  <footer class="foot">
+    <span id="activity"></span>
+    <button id="open-root" class="link" data-i18n-title="footer.open_backups"></button>
+  </footer>
+
+  <div id="toast" class="toast" role="status"></div>
+
+  <dialog id="add-dialog">
+    <form id="add-form" method="dialog">
+      <h2 data-i18n="add.title"></h2>
+      <label class="field">
+        <span data-i18n="add.name"></span>
+        <input name="name" required autocomplete="off" spellcheck="false">
+      </label>
+      <label class="field">
+        <span data-i18n="add.path"></span>
+        <div class="picker">
+          <input name="path" required readonly data-i18n-placeholder="add.none">
+          <button type="button" class="btn" data-pick="folder" data-i18n="add.choose"></button>
+        </div>
+      </label>
+      <label class="field">
+        <span><span data-i18n="add.exe"></span> <em data-i18n="add.exe_note"></em></span>
+        <div class="picker">
+          <input name="exe" readonly data-i18n-placeholder="add.none">
+          <button type="button" class="btn" data-pick="exe" data-i18n="add.choose"></button>
+        </div>
+      </label>
+      <p class="form-error" hidden></p>
+      <div class="dialog-actions">
+        <button type="button" class="btn" data-close data-i18n="common.cancel"></button>
+        <button type="submit" class="btn primary" data-i18n="add.submit"></button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="confirm-dialog">
+    <form method="dialog">
+      <h2 id="confirm-title"></h2>
+      <div id="confirm-text" class="hint"></div>
+      <div class="dialog-actions">
+        <button value="cancel" class="btn" data-i18n="common.cancel"></button>
+        <button value="ok" class="btn primary" id="confirm-ok"></button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="i18n.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
